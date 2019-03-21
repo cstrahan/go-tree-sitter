@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/lexer.c
+../../third-party/tree-sitter/lib/src/lexer.c

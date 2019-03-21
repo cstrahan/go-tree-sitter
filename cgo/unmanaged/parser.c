@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/parser.c
+../../third-party/tree-sitter/lib/src/parser.c

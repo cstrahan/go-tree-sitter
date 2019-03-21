@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/externals/utf8proc/utf8proc.c
+../../third-party/tree-sitter/lib/utf8proc/utf8proc.c

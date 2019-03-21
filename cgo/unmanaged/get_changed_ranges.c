@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/get_changed_ranges.c
+../../third-party/tree-sitter/lib/src/get_changed_ranges.c

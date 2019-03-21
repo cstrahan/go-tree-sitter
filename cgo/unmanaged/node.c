@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/node.c
+../../third-party/tree-sitter/lib/src/node.c

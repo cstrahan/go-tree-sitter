@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/language.c
+../../third-party/tree-sitter/lib/src/language.c

@@ -1,13 +1,10 @@
 package unmanaged
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/../../third-party/tree-sitter/src
-#cgo CFLAGS: -I${SRCDIR}/../../third-party/tree-sitter/include
-#cgo CFLAGS: -I${SRCDIR}/../../third-party/tree-sitter/externals/utf8proc
+#cgo CFLAGS: -I${SRCDIR}/../../third-party/tree-sitter/lib/include
+#cgo CFLAGS: -I${SRCDIR}/../../third-party/tree-sitter/lib/utf8proc
 
-#include "tree_sitter/compiler.h"
-#include "tree_sitter/parser.h"
-#include "tree_sitter/runtime.h"
+#include "tree_sitter/api.h"
 */
 import "C"
 
@@ -20,7 +17,7 @@ import (
 
 const TREE_SITTER_LANGUAGE_VERSION = 9
 
-type Language uintptr
+type Language C.TSLanguage
 
 type Point struct {
 	Row    uint32
@@ -45,8 +42,8 @@ func NewParser() Parser {
 	return Parser{parser}
 }
 
-func (self Parser) SetLanguage(language Language) error {
-	c_language := (*C.TSLanguage)(unsafe.Pointer(language))
+func (self Parser) SetLanguage(language *Language) error {
+	c_language := (*C.TSLanguage)(language)
 	version := C.ts_language_version(c_language)
 	if version == TREE_SITTER_LANGUAGE_VERSION {
 		C.ts_parser_set_language(self.ptr, c_language)
@@ -64,16 +61,11 @@ func (self Parser) SetOperationLimit(limit uint64) {
 	C.ts_parser_set_operation_limit(self.ptr, C.size_t(limit))
 }
 
-func (self Parser) Parse(input []byte, oldTree *Tree) (Tree, bool) {
-	c_old_tree := (*C.TSTree)(nil)
-	if oldTree != nil {
-		c_old_tree = oldTree.ptr
-	}
-
+func (self Parser) Parse(input []byte, oldTree Tree) (Tree, bool) {
 	hdr := (*reflect.SliceHeader)(unsafe.Pointer(&input))
 	c_tree := C.ts_parser_parse_string(
 		self.ptr,
-		c_old_tree,
+		oldTree.ptr,
 		(*C.char)(unsafe.Pointer(hdr.Data)),
 		C.uint(hdr.Len),
 	)

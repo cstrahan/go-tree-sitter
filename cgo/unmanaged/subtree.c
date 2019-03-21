@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/subtree.c
+../../third-party/tree-sitter/lib/src/subtree.c

@@ -1,0 +1,1 @@
+../../third-party/tree-sitter-go/src/parser.c

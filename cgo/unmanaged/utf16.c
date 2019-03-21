@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/utf16.c
+../../third-party/tree-sitter/lib/src/utf16.c

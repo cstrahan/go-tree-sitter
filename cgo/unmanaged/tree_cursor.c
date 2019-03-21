@@ -1,1 +1,1 @@
-../../third-party/tree-sitter/src/runtime/tree_cursor.c
+../../third-party/tree-sitter/lib/src/tree_cursor.c
